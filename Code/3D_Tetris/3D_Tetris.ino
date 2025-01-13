@@ -18,7 +18,7 @@ const int X_DIM = 3;  // dimensin in X-direction
 const int Y_DIM = 3;  // dimension in Y-direction
 const int Z_DIM = 12;  // Adjustable dimension in Z-direction (testet for 10 and 12)
 
-//LED Einstellungen
+//LED Settings
 #define LED_PIN 16
 #define NUM_LEDS 108     // Number of LEDs
 #define MAX_X 3          // Dimension X (3 layers)
@@ -42,7 +42,7 @@ CRGB leds[NUM_LEDS];
 //Eeproom-adresses
 Preferences preferences;
 
-// Speicher für die 3D-Matrix (mit Maximaldimension)
+//Storage for the 3D-Matrix digital twin (with the variable dimensions)
 int matrix[X_DIM][Y_DIM][Z_DIM]; 
 
 //Color Options
@@ -106,71 +106,71 @@ Tetromino tetrominos[] = {
     // Star-Tetromino - 8
     {
         {{0, 1, 1}, {1, 0, 1}, {1, 1, 1},  {2, 1, 1}, {1, 2, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
     // Big-S-Tetromino - 9
     {
         {{0, 0, 1}, {0, 1, 1}, {1, 1, 1},  {2, 1, 1}, {2, 2, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
     // Big-T-Tetromino - 10
     {
         {{0, 1, 1}, {1, 1, 1}, {2, 0, 1}, {2, 1, 1}, {2, 2, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
     // Handy-Tetromino - 11
     {
         {{0, 1, 1}, {1, 1, 1}, {1, 0, 1},{2, 1, 1}, {2, 0, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
-    // Großes-U-Tetromino - 12
+    // Big-U-Tetromino - 12
     {
         {{0, 0, 1}, {0, 1, 1}, {1, 1, 1}, {2, 1, 1}, {2, 0, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
-    // Großes-L-Tetromino - 13
+    // Big-L-Tetromino - 13
     {
         {{0, 0, 1}, {0, 1, 1}, {0, 2, 1}, {1, 2, 1}, {2, 2, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
-    // L mit Pickel -Tetromino - 14
+    // L with dot -Tetromino - 14
     {
         {{1, 0, 1}, {1, 1, 1}, {1, 2, 1}, {2, 2, 1}, {0, 1, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
-    // Treppe-Tetromino - 15
+    // stair-Tetromino - 15
     {
         {{0, 0, 1}, {0, 1, 1}, {1, 1, 1}, {1, 2, 1}, {2, 2, 1}}, 
-        0,0,0  // Farbe
+        0,0,0  // Color
     },
 
     //3D Terominos:
-    // 3*1 mit Ecke-Tetromino - 16
+    // 3*1 with corner -Tetromino - 16
     {
         {{0, 1, 1}, {1, 1, 1}, {2, 1, 1}, {0, 0, 0}, {1, 0, 0}}, 
         0,0,0  // Farbe
     },
-    // L mit Punkt -Tetromino - 17
+    // L with dot -Tetromino - 17
     {
         {{1, 0, 1}, {1, 1, 1}, {1, 2, 1}, {2, 2, 1}, {1, 1, 0}}, 
         0,0,0  // Farbe
     },
-    // T mit Punkt -Tetromino - 18
+    // T with dot -Tetromino - 18
     {
         {{1, 0, 1}, {0, 1, 1}, {1, 1, 1}, {2, 1, 1}, {1, 1, 0}}, 
         0,0,0  // Farbe
     },
-    // S mit Punkt -Tetromino - 20
+    // S with dot -Tetromino - 20
     {
         {{0, 1, 1}, {1, 0, 1}, {1, 1, 1}, {2, 0, 1}, {1, 1, 0}}, 
         0,0,0  // Farbe
     },
-    // o mit Punkt -Tetromino - 21
+    // o with dot -Tetromino - 21
     {
         {{0, 0, 1}, {0, 1, 1}, {1, 0, 1}, {1, 1, 1}, {1, 1, 0}}, 
         0,0,0  // Farbe
     },
-    // Kleines-KoordinatenSystem-Tetromino - 22
+    // Small-KoordinatenSystem-Tetromino - 22
     {
         {{0, 1, 1}, {1, 1, 1}, {1, 2, 1},{1, 1, 0}, {-3, -3, -3}}, 
         0,0,0  // Farbe
@@ -258,10 +258,10 @@ void loop() {
   // Show the matrix in the serial monitor (for debugging)
   //updateAndDisplayMatrix();
   if(gameRunning){
-    static unsigned long lastUpdateTime = 0; // Für die Bewegung alle 3s
+    static unsigned long lastUpdateTime = 0; 
     unsigned long currentTime = millis();
   
-    // Check if 3 seconds have passed
+    // Check if gameDelay time have passed
     if (currentTime - lastUpdateTime >= gameDelay) {
       lastUpdateTime = currentTime;
       allowButtonPress = false;
@@ -326,7 +326,7 @@ void saveData(String highscoreString){
   splitHighscores(highscoreString, names, scores, maxEntries);
   String scoreData = "";
   for (int i = 0; i < maxEntries; i++) {
-    if (names[i] != "") { // Überprüfen, ob der Name gültig ist
+    if (names[i] != "") { // check if the name is valid
       Serial.print("Name: ");
       Serial.print(names[i]);
       Serial.print(", Score: ");
@@ -387,7 +387,7 @@ void updateLEDs() {
         int index = XYZ_to_index(x, y, z);
         if (index < NUM_LEDS) { // check: Index in range
           if (matrix[x][y][z] > 0 && matrix[x][y][z] <= 25) {
-            leds[index].setRGB(color[matrix[x][y][z]][0],color[matrix[x][y][z]][1],color[matrix[x][y][z]][2]); // Stone active: color red
+            leds[index].setRGB(color[matrix[x][y][z]][0],color[matrix[x][y][z]][1],color[matrix[x][y][z]][2]); // Stone active: colored
           } else {
             leds[index] = CRGB::Black; // stone deactivated: LED off
           }
@@ -425,7 +425,7 @@ void placeTetromino(Tetromino &tetromino, int z) {
             int nz = z + tetromino.points[i][2];
 
             //Set the point in the matrix if it is valid
-            if (nx >= 0 && nx < X_DIM && ny >= 0 && ny < Y_DIM && nz >= 0 && nz < Z_DIM) {                //added nz>=0
+            if (nx >= 0 && nx < X_DIM && ny >= 0 && ny < Y_DIM && nz >= 0 && nz < Z_DIM) { 
                 matrix[nx][ny][nz] = tetromino.colorIndex;
             }
         }
@@ -516,8 +516,8 @@ void spawnNewTetromino() {
     ESPForm.setElementContent("hidden-piece-input", String(nextTetrominoIndex));
   }
 
-  currentTetromino.xPos = 0;                  // Mitte in X
-  currentTetromino.yPos = 0;                  // Mitte in Y
+  currentTetromino.xPos = 0;                  // middle in X
+  currentTetromino.yPos = 0;                  // middle in Y
   currentTetromino.colorIndex = random(1, 26);
 
    if (!canPlaceTetromino(currentTetromino, currentZ)) {
@@ -535,20 +535,20 @@ int spawnRelativeToDiff(){
   int i = 0;
   switch(difficulty){ 
     case 0:
-      i = random(0, 3); // Zufällige Schwierigkeit Einfach
+      i = random(0, 3); // Random Tetromino difficulti easy
       break;
     case 1:
-      i = random(0, 8); // Zufällige Schwierigkeit Mittel
+      i = random(0, 8); // Random Tetromino difficulti middel
       break;
     case 2:
-      i = random(3, 13); // Zufällige Schwierigkeit Schwer
+      i = random(3, 13); // Random Tetromino difficulti hard
       break;
     case 3:
-      i = random(3, 16); // Zufällige Schwierigkeit Experte
+      i = random(3, 16); // Random Tetromino difficulti experte
       break;
     case 4:
-      i = random(8, 23); // Zufällige Schwierigkeit Impossible
-      currentZ=0;
+      i = random(8, 22); // Random Tetromino difficulti impossible
+      currentZ=1;
       break;
     }
     return i;
@@ -755,12 +755,12 @@ void rotateTetromino(Tetromino &tetromino, char axis){
 bool AdjustPosition(Tetromino &tetromino, int &currentZ) {
     const int maxAttempts = 5;
     int adjustments[6][3] = {
-        { 1,  0,  0}, // Rechts
-        {-1,  0,  0}, // Links
-        { 0,  1,  0}, // Oben
-        { 0, -1,  0}, // Unten
-        { 0,  0,  1}, // Vorne
-        { 0,  0, -1}  // Hinten
+        { 1,  0,  0}, // right
+        {-1,  0,  0}, // left
+        { 0,  1,  0}, // top
+        { 0, -1,  0}, // down
+        { 0,  0,  1}, // front
+        { 0,  0, -1}  // back
     };
 
     // Save orgiginal position
@@ -863,6 +863,7 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
   Serial.println("***********************************");
   Serial.println();
 
+  //Check for any game running related button presses according to the id
   if(element.id == "startButton"){
     if(!gameRunning) {
       gameRunning = true;
@@ -874,6 +875,7 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
       String diffi = value.value;
       Serial.println("GameMode:");
       Serial.println(diffi);
+      //Set the difficulti relative to the value in the combobox
       if(diffi == "easy"){
             difficulty = 0;
             gameDelay = 3000;
@@ -890,15 +892,17 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
             difficulty = 4;
             gameDelay = 1000;
       }
+      //Spawn the next Tetromino before the first one was even created to show it in the GUI
       nextTetrominoIndex = spawnRelativeToDiff();
+      //Check for the index of the Tetromino because the ones above 15 can't be displayes anymore on a 2D surface
       if(nextTetrominoIndex > 15) {
         ESPForm.setElementContent("hidden-piece-input", "16");
       }
       else{
         ESPForm.setElementContent("hidden-piece-input", String(nextTetrominoIndex));
       }
-      clearMatrix();        // Spielfeld initialisieren
-      spawnNewTetromino();  // Ersten Tetromino erstellen
+      clearMatrix();        // init gamefield
+      spawnNewTetromino();  // spawn new Tetromino
       delay(1000);
     } else {
       gameRunning = false;
@@ -918,6 +922,7 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
     }
   }
   
+  //Check for any movment related button presses according to the id
   if(gameRunning && allowButtonPress) {
     if(element.id == "moveUp") {
       moveTetromino(currentTetromino, 0, -1, 0);
