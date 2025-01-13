@@ -41,12 +41,6 @@ Key features include:
 
 ### Prerequisites  
 
-#### Hardware  
-- **ESPduino Board**  
-- **108 PL9823 RGB LEDs**  
-- **3D-Printed Matrix Frame**  
-- **Power Supply**  
-
 #### Software  
 - **Arduino IDE**: Download and install the [Arduino IDE](https://www.arduino.cc/en/software).  
 - **ESP32 Board Manager**: Add the ESP32 board manager by following [this guide](https://docs.espressif.com/projects/arduino-esp32/en/latest/getting_started.html).  
@@ -138,4 +132,4 @@ This project was developed by Marvin Heins, Markus Schmidt, and Leonard Pitt Hol
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the GNU General Public License v3.0. See the `LICENSE` file for more details.
