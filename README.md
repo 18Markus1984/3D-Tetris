@@ -37,23 +37,61 @@ Key features include:
 
 ---
 
-## Getting Started
+## Getting Started  
 
-### Prerequisites
-- **Hardware**: ESPduino board, 108 PL9823 RGB LEDs, 3D-printed matrix frame, power supply.
-- **Software**: [Arduino IDE](https://www.arduino.cc/en/software) with ESP32 board manager and [FastLED](https://github.com/FastLED/FastLED) library installed.
+### Prerequisites  
 
-### Installation
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/18Markus1984/3D-Tetris.git
-   ```
-2. Open the project in the Arduino IDE.
-3. Upload the sketch to the ESPduino.
-4. Connect to the ESP32's Wi-Fi network (SSID: `3D-Tetris`, Password: `12345678`).
-5. Access the web interface at `http://192.168.4.1`.
+#### Hardware  
+- **ESPduino Board**  
+- **108 PL9823 RGB LEDs**  
+- **3D-Printed Matrix Frame**  
+- **Power Supply**  
+
+#### Software  
+- **Arduino IDE**: Download and install the [Arduino IDE](https://www.arduino.cc/en/software).  
+- **ESP32 Board Manager**: Add the ESP32 board manager by following [this guide](https://docs.espressif.com/projects/arduino-esp32/en/latest/getting_started.html).  
+- **Libraries**: Install the following libraries:  
+  - Via Arduino IDE Library Manager:  
+    - `FastLED`  
+    - `WiFi`  
+    - `Preferences`  
+  - **ESPForm Library**:  
+    - Download the library from the [ESPForm GitHub repository](https://github.com/mobizt/ESPForm).  
+    - Extract the downloaded ZIP file.  
+    - Copy the extracted folder into the `libraries` directory of your Arduino IDE sketchbook folder.  
+
+### Installation  
+
+1. **Clone the Repository**  
+   Open a terminal and run the following command to clone the repository:  
+   ```bash  
+   git clone https://github.com/18Markus1984/3D-Tetris.git  
+   ```  
+
+2. **Open the Project in Arduino IDE**  
+   Navigate to the cloned folder and open the `.ino` file in the Arduino IDE.  
+
+3. **Configure the ESP32 Board**  
+   - Go to **Tools** > **Board** and select **ESP32 Dev Module**.  
+   - Enable **PSRAM** under **Tools** > **PSRAM**.  
+
+4. **Upload the Sketch**  
+   - Ensure the correct COM port is selected under **Tools** > **Port**.  
+   - Click the **Upload** button to flash the code onto the ESPduino.  
+
+5. **Connect to the ESP32's Wi-Fi Network**  
+   - On your computer or mobile device, connect to the Wi-Fi network:  
+     - **SSID**: `3D-Tetris`  
+     - **Password**: `12345678`  
+
+6. **Access the Web Interface**  
+   - Open a web browser and navigate to:  
+     - [http://192.168.4.1](http://192.168.4.1)  
+
+You can now enjoy 3D Tetris using the interactive web interface!  
 
 ---
+
 
 ## How It Works
 
