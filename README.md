@@ -6,10 +6,6 @@ Welcome to the 3D Tetris project! This repository documents the creation of a 3x
 
 <img src="./picture_videos/GitHub.gif"/>
 
-<img src="./picture_videos/GitHub(1).png"/>
-
-<img src="./picture_videos/webserver_gui.png"/>
-
 
 ## Project Overview
 
