@@ -32,7 +32,7 @@ Key features include:
 ### Software
 - **LED Control**: Powered by the FastLED library for efficient matrix management.
 - **Game Logic**: Implements Tetris gameplay mechanics including rotation, collision detection, and line clearing.
-- **Web Interface**: HTML/CSS-based GUI hosted via an onboard web server, with multi-language support.
+- **Web Interface**: HTML/CSS-based [GUI](./picture_videos/webserver_gui.png) hosted via an onboard web server, with multi-language support.
 
 ### Gameplay
 - Control Tetrominoes (Tetris blocks) through the GUI.
