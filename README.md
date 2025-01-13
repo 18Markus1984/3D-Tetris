@@ -46,10 +46,11 @@ Key features include:
 
 ### Prerequisites  
 
-#### Construction
-- [LED Matrix](https://github.com/18Markus1984/3D-Tetris/wiki/Building-the-LED-Matrix) 
-- [3D printed case](https://github.com/18Markus1984/3D-Tetris/wiki/Building-the-3D-Printed-Case)
-- [Wiring](https://github.com/18Markus1984/3D-Tetris/wiki/Wiring)
+#### Assembly
+- [Circuit](https://github.com/18Markus1984/3D-Tetris/wiki/Soldering-the-Circuit): The LED matrix is powered and controlled through a single GPIO pin of the ESPduino. A 5V USB-C power supply is used for both the matrix and the ESPduino.
+- [LED Matrix](https://github.com/18Markus1984/3D-Tetris/wiki/Building-the-LED-Matrix): LEDs are arranged in a 3x3x12 grid and tested individually for functionality. Custom fixtures were used to ensure precision during soldering. 
+- [3D printed Case](https://github.com/18Markus1984/3D-Tetris/wiki/Assembling-the-Case): The case, 3D-printed using PLA, features dedicated mounts for the ESPduino, USB ports, and optional counterweights to enhance stability.
+
 
 #### Software  
 - **Arduino IDE**: Download and install the [Arduino IDE](https://www.arduino.cc/en/software).  
