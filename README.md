@@ -48,6 +48,11 @@ Key features include:
 
 ### Prerequisites  
 
+#### Construction
+- [LED Matrix](https://github.com/18Markus1984/3D-Tetris/wiki/Building-the-LED-Matrix) 
+- [3D printed case](https://github.com/18Markus1984/3D-Tetris/wiki/Building-the-3D-Printed-Case)
+- [Wiring](https://github.com/18Markus1984/3D-Tetris/wiki/Wiring)
+
 #### Software  
 - **Arduino IDE**: Download and install the [Arduino IDE](https://www.arduino.cc/en/software).  
 - **ESP32 Board Manager**: Add the ESP32 board manager by following [this guide](https://docs.espressif.com/projects/arduino-esp32/en/latest/getting_started.html).  
