@@ -1,7 +1,3 @@
-Hier ist die aktualisierte Version des **README.md** mit den zusätzlichen Features:  
-
----
-
 # 3D Tetris on a 3x3x12 LED Matrix
 
 Welcome to the 3D Tetris project! This repository documents the creation of a 3x3x12 LED matrix that enables users to play a fully functional 3D Tetris game. The project leverages an ESP32-based development board (ESPduino) with integrated web server functionality for remote control.
@@ -45,7 +41,7 @@ Key features include:
 
 ### Prerequisites
 - **Hardware**: ESPduino board, 108 PL9823 RGB LEDs, 3D-printed matrix frame, power supply.
-- **Software**: [Arduino IDE](https://www.arduino.cc/en/software) with ESP32 board manager and FastLED library installed.
+- **Software**: [Arduino IDE](https://www.arduino.cc/en/software) with ESP32 board manager and [FastLED](https://github.com/FastLED/FastLED) library installed.
 
 ### Installation
 1. Clone this repository:
@@ -105,7 +101,3 @@ This project was developed by Marvin Heins, Markus Schmidt, and Leonard Pitt Hol
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
----
-
-Soll ich die Datei als `README.md` für dich speichern?
