@@ -8,8 +8,6 @@ Welcome to the 3D Tetris project! This repository documents the creation of a 3x
 
 <img src="./picture_videos/GitHub(1).png"/>
 
-<img src="./picture_videos/webserver_gui.png"/>
-
 
 ## Project Overview
 
@@ -31,12 +29,10 @@ Key features include:
 - **Custom Housing**: 3D-printed for modularity and ease of assembly.
 - **Power Supply**: Powered via USB-C with an integrated on/off switch.
 
-<img src="./picture_videos/wiring_diagram.png"/>
-
 ### Software
 - **LED Control**: Powered by the FastLED library for efficient matrix management.
 - **Game Logic**: Implements Tetris gameplay mechanics including rotation, collision detection, and line clearing.
-- **Web Interface**: HTML/CSS-based GUI hosted via an onboard web server, with multi-language support.
+- **Web Interface**: HTML/CSS-based [GUI](./picture_videos/wiring_diagram.png) hosted via an onboard web server, with multi-language support.
 
 ### Gameplay
 - Control Tetrominoes (Tetris blocks) through the GUI.
