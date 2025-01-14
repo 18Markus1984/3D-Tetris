@@ -188,7 +188,9 @@ int levelScore = 0;           // variable that shows the level in which the user
 String playerData = "";       // string which buffers the highscore data
 int difficulty = 0;           // variable to set the difficulty of the game
 bool changeScore = false;     // toggle to signal that the new score has to be saved
-bool allowButtonPress = true; // toggle to limit the button press interrupts
+int ElementCounter = 0;
+ESPFormClass::HTMLElementItem ElementTrigger;   // set a Element for the Element press/or value change interrupts
+ESPFormClass::HTMLElementItem PreviousElementTrigger; 
 
 //regular Arduino functions
 void setup();
@@ -219,10 +221,11 @@ void rotateTetromino(Tetromino &tetromino, char axis);              // General r
 bool AdjustPosition(Tetromino &tetromino, int &currentZ);           // function to find a postion if the Tetromino rotates out of the gameMatrix
 
 //wifi and webserver realted functions
-bool startWiFi();                                                      //starts the Wifi protocol
-void setupESPForm();                                                   //Initialised all the EventListener for the comminication between Esp and HTML
-void formElementEventCallback(ESPFormClass::HTMLElementItem element);  //function that gets called if any of the EventListener get triggered. Used to get the different button presses and value changes
-void serverTimeoutCallback();                                          //If server timeout (no client connected within specific time)
+bool startWiFi();                                                         //starts the Wifi protocol
+void setupESPForm();                                                      //Initialised all the EventListener for the comminication between Esp and HTML
+void formElementEventCallback(ESPFormClass::HTMLElementItem element);     //function that gets called if any of the EventListener get triggered. Used to get the different button presses and value changes
+void checkForGameControllElements(ESPFormClass::HTMLElementItem element); //function that calls all calls the differnt functions for every button
+void serverTimeoutCallback();                                             //If server timeout (no client connected within specific time)
 
 
 void setup() {
@@ -264,18 +267,21 @@ void loop() {
     // Check if gameDelay time have passed
     if (currentTime - lastUpdateTime >= gameDelay) {
       lastUpdateTime = currentTime;
-      allowButtonPress = false;
       // Try to move the Tetromino down
       if (!moveTetrominoDown(currentTetromino)) {
-        allowButtonPress = true;
         // Movement failed -> Spawn new Tetromino
         spawnNewTetromino();
       }
-      allowButtonPress = true;
     }
   }
   else {
     idleAnimtation();
+  }
+
+  if(PreviousElementTrigger.id != ElementTrigger.id || ElementCounter > 1) {
+    checkForGameControllElements(ElementTrigger);
+    PreviousElementTrigger = ElementTrigger;
+    ElementCounter--;
   }
 }
 
@@ -505,7 +511,7 @@ void updateAndDisplayMatrix() {
 // function to chose a random new Tetromino
 void spawnNewTetromino() {
   currentZ = -1; // Start in the top most layer
-  Serial.println("Difficulty");
+  Serial.print("Difficulty:");
   Serial.println(difficulty);
   currentTetromino = tetrominos[nextTetrominoIndex];
   nextTetrominoIndex = spawnRelativeToDiff();
@@ -863,6 +869,19 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
   Serial.println("***********************************");
   Serial.println();
 
+  ElementTrigger = element;
+  ElementCounter++;
+
+  if(element.id == "gameScores") {
+    if(changeScore){
+      saveData(element.value);
+      changeScore = false;
+    }
+    ElementCounter--;
+  }
+}
+
+void checkForGameControllElements(ESPFormClass::HTMLElementItem element){
   //Check for any game running related button presses according to the id
   if(element.id == "startButton"){
     if(!gameRunning) {
@@ -915,15 +934,10 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
   }
   if(element.id == "submitName") {
     changeScore = true;
-  } else if(element.id == "gameScores") {
-    if(changeScore){
-      saveData(element.value);
-      changeScore = false;
-    }
-  }
-  
+  } 
+
   //Check for any movment related button presses according to the id
-  if(gameRunning && allowButtonPress) {
+  if(gameRunning) {
     if(element.id == "moveUp") {
       moveTetromino(currentTetromino, 0, -1, 0);
     }
@@ -931,10 +945,10 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
       moveTetromino(currentTetromino, 0, 1, 0);
     }
     else if(element.id == "moveLeft"){
-      moveTetromino(currentTetromino, -1, 0, 0);
+      moveTetromino(currentTetromino, 1, 0, 0);
     }
     else if(element.id == "moveRight") {
-      moveTetromino(currentTetromino, 1, 0, 0);
+      moveTetromino(currentTetromino, -1, 0, 0);
     }
     else if(element.id == "fallButton") {
       fallDown(currentTetromino);
