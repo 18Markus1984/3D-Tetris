@@ -2,9 +2,9 @@
 
 Welcome to the 3D Tetris project! This repository documents the creation of a 3x3x12 LED matrix that enables users to play a fully functional 3D Tetris game. The project leverages an ESP32-based development board (ESPduino) with integrated web server functionality for remote control.
 
-<img src="./picture_videos/GitHub.png"/>
-
 <img src="./picture_videos/GitHub.gif"/>
+
+<img src="./picture_videos/GitHub(1).gif"/>
 
 
 ## Project Overview
