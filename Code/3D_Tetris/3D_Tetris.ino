@@ -36,7 +36,7 @@ const int Z_DIM = 12;  // Adjustable dimension in Z-direction (testet for 10 and
 // How many seconds to show black between switches
 #define BLACKTIME   1
 
-// FastLED-Array
+// FastLED-Array  
 CRGB leds[NUM_LEDS];
 
 //Eeproom-adresses
@@ -191,6 +191,7 @@ bool changeScore = false;     // toggle to signal that the new score has to be s
 int ElementCounter = 0;
 ESPFormClass::HTMLElementItem ElementTrigger;   // set a Element for the Element press/or value change interrupts
 ESPFormClass::HTMLElementItem PreviousElementTrigger; 
+String elementButton = "";
 
 //regular Arduino functions
 void setup();
@@ -277,11 +278,10 @@ void loop() {
   else {
     idleAnimtation();
   }
-
-  if(PreviousElementTrigger.id != ElementTrigger.id || ElementCounter > 1) {
-    checkForGameControllElements(ElementTrigger);
-    PreviousElementTrigger = ElementTrigger;
-    ElementCounter--;
+  Serial.println(elementButton);
+  if(elementButton != "") {
+    checkForGameControllElements(elementButton);
+    elementButton = "";
   }
 }
 
@@ -869,8 +869,7 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
   Serial.println("***********************************");
   Serial.println();
 
-  ElementTrigger = element;
-  ElementCounter++;
+  elementButton = element.id;
 
   if(element.id == "gameScores") {
     if(changeScore){
@@ -881,9 +880,9 @@ void formElementEventCallback(ESPFormClass::HTMLElementItem element){
   }
 }
 
-void checkForGameControllElements(ESPFormClass::HTMLElementItem element){
+void checkForGameControllElements(String elementButton){
   //Check for any game running related button presses according to the id
-  if(element.id == "startButton"){
+  if(elementButton == "startButton"){
     if(!gameRunning) {
       gameRunning = true;
       score = 0;
@@ -929,37 +928,37 @@ void checkForGameControllElements(ESPFormClass::HTMLElementItem element){
       updateLEDs();
     }
   }
-  else if(element.id == "pauseButton") {
+  else if(elementButton == "pauseButton") {
     gameRunning = !gameRunning;
   }
-  if(element.id == "submitName") {
+  if(elementButton == "submitName") {
     changeScore = true;
   } 
 
   //Check for any movment related button presses according to the id
   if(gameRunning) {
-    if(element.id == "moveUp") {
+    if(elementButton == "moveUp") {
       moveTetromino(currentTetromino, 0, -1, 0);
     }
-    else if(element.id == "moveDown"){
+    else if(elementButton == "moveDown"){
       moveTetromino(currentTetromino, 0, 1, 0);
     }
-    else if(element.id == "moveLeft"){
+    else if(elementButton == "moveLeft"){
       moveTetromino(currentTetromino, 1, 0, 0);
     }
-    else if(element.id == "moveRight") {
+    else if(elementButton == "moveRight") {
       moveTetromino(currentTetromino, -1, 0, 0);
     }
-    else if(element.id == "fallButton") {
+    else if(elementButton == "fallButton") {
       fallDown(currentTetromino);
     }
-    else if(element.id == "rotateZ") {
+    else if(elementButton == "rotateZ") {
       rotateTetromino(currentTetromino, 'Z');
     }
-    else if(element.id == "rotateX") {
+    else if(elementButton == "rotateX") {
       rotateTetromino(currentTetromino, 'X');
     }
-    else if(element.id == "rotateY") {
+    else if(elementButton == "rotateY") {
       rotateTetromino(currentTetromino, 'Y');
     }
   }
