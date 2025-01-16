@@ -137,7 +137,7 @@ The project met its primary objectives, showcasing:
 
 ## Acknowledgments
 
-This project was developed by Marvin Heins, Markus Schmidt, and Leonard Pitt Holz-Diehl. Special thanks to the open-source community and the developers of the FastLED library.
+This project was developed by Marvin Heins, Markus Schmidt, and Leonard Holz-Diehl. Special thanks to the open-source community and the developers of the FastLED library.
 
 ---
 
