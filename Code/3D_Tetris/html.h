@@ -329,7 +329,7 @@ static const char *index_html = R"--espform--(
                 </div>
                 <div class="row">
                     <button id="moveLeft" class="control-btn"></button>
-          <button id="hiddenButton" class="control-btn"></button>
+                    <button id="hiddenButton" class="control-btn"></button>
                     <button id="moveRight" class="control-btn"></button>
                 </div>
                 <div class="row">
@@ -338,7 +338,7 @@ static const char *index_html = R"--espform--(
             </div>
 
             <div class="fall-button-container">
-                <div class="section-title">Schnell Nachunten</div>
+                <div class="section-title">Schnell nach unten</div>
                 <button id="fallButton" class="control-btn">↓</button>
             </div>
         </div>
@@ -385,7 +385,7 @@ static const char *index_html = R"--espform--(
         difficulty: "Schwierigkeitsstufe",
         score: "Punkte",
         directions: "Richtungen",
-        fall: "Schnell Nachunten",
+        fall: "Schnell nach unten",
         rotations: "Rotationen",
         gameOver: "Game Over",
         enterName: "Name eingeben",
