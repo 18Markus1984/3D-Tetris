@@ -50,6 +50,7 @@ Key features include:
 - [Circuit](https://github.com/18Markus1984/3D-Tetris/wiki/Soldering-the-Circuit): The LED matrix is powered and controlled through a single GPIO pin of the ESPduino. A 5V USB-C power supply is used for both the matrix and the ESPduino.
 - [LED Matrix](https://github.com/18Markus1984/3D-Tetris/wiki/Building-the-LED-Matrix): LEDs are arranged in a 3x3x12 grid and tested individually for functionality. Custom fixtures were used to ensure precision during soldering. 
 - [3D printed Case](https://github.com/18Markus1984/3D-Tetris/wiki/Assembling-the-Case): The case, 3D-printed using PLA, features dedicated mounts for the ESPduino, USB ports, and optional counterweights to enhance stability.
+- [How the Code Works](https://github.com/18Markus1984/3D-Tetris/wiki/Flowchart-Walkthrough:-How-the-Code-Works): The ESP32 Tetris game is explained using a flowchart, detailing initialization, web interface, user input processing, game logic, scoring, and game over handling.
 
 
 #### Software  
@@ -99,6 +100,35 @@ You can now enjoy 3D Tetris using the interactive web interface!
 
 
 ## How It Works
+
+### Code Flow Chart
+```mermaid
+graph TD;
+    Start["ESP32 starts"] --> InitWiFi["Initialize WiFi"];
+    InitWiFi --> LoadWebPage["Load webpage from html.h"];
+    LoadWebPage --> WaitForClient["Wait for client requests"];
+    
+    WaitForClient -->|Start button pressed| StartGame["Start game"];
+    StartGame --> GameLoop["Game loop"];
+    
+    GameLoop -->|Movement input received| UpdatePosition["Update piece position"];
+    UpdatePosition --> GameLoop;
+    
+    GameLoop -->|Rotation input received| RotatePiece["Rotate piece"];
+    RotatePiece --> GameLoop;
+    
+    GameLoop -->|Piece falls| CheckCollision["Check collision"];
+    CheckCollision -->|Collision detected| PlacePiece["Place piece"];
+    PlacePiece --> CheckLines["Check for complete lines"];
+    CheckLines -->|Lines found| RemoveLines["Remove lines"];
+    RemoveLines --> UpdateScore["Update score"];
+    UpdateScore --> GameLoop;
+    
+    CheckLines -->|No lines| GameLoop;
+    
+    GameLoop -->|Game over| GameOver["Game Over"];
+    GameOver --> WaitForClient;
+```
 
 ### LED Matrix
 - **Construction**: LEDs are arranged in a 3x3x12 format, connected using PL9823-compatible drivers.
