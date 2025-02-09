@@ -50,7 +50,7 @@ Key features include:
 - [Circuit](https://github.com/18Markus1984/3D-Tetris/wiki/Soldering-the-Circuit): The LED matrix is powered and controlled through a single GPIO pin of the ESPduino. A 5V USB-C power supply is used for both the matrix and the ESPduino.
 - [LED Matrix](https://github.com/18Markus1984/3D-Tetris/wiki/Building-the-LED-Matrix): LEDs are arranged in a 3x3x12 grid and tested individually for functionality. Custom fixtures were used to ensure precision during soldering. 
 - [3D printed Case](https://github.com/18Markus1984/3D-Tetris/wiki/Assembling-the-Case): The case, 3D-printed using PLA, features dedicated mounts for the ESPduino, USB ports, and optional counterweights to enhance stability.
-- [How the Code Works](https://github.com/18Markus1984/3D-Tetris/wiki/Flowchart-Walkthrough:-How-the-Code-Works): The ESP32 Tetris game is explained using a flowchart, detailing initialization, web interface, user input processing, game logic, scoring, and game over handling.
+- [How the Code Works](https://github.com/18Markus1984/3D-Tetris/wiki/How-the-Code-Works): The ESP32 Tetris game is explained using a flowchart, detailing initialization, web interface, user input processing, game logic, scoring, and game over handling.
 
 
 #### Software  
